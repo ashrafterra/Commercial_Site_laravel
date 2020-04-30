@@ -53,7 +53,8 @@ class ItemController extends Controller
     {
         //save image to the public/storage/shoes directory
         $file=$request->file('image');
-        $fileName= Storage::put('items', $file);
+        // $fileName= Storage::put('items', $file);
+        $fileName=Storage::disk('images')->put('',$file);
 
         //create entry in Table
         $attributes= [ 
@@ -63,7 +64,8 @@ class ItemController extends Controller
             'brand_id'=> $request->brand_id,
             'description'=>$request->description,
             'price'=> $request->price ,
-            'fileName'=>'storage/'.$fileName, 
+            // 'fileName'=>'storage/'.$fileName,
+            'fileName'=>Storage::disk('images')->url($fileName),
             'contact_email'=>$request->contact_email,
             'contact_telephone'=>$request->contact_telephone,
         ];

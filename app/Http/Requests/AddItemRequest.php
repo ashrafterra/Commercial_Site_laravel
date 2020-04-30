@@ -28,8 +28,8 @@ class AddItemRequest extends FormRequest
             'description'=>['required'],
             'price'=>['required', 'numeric', 'min:2' , 'max:50000'],
             'image'=>['required', 'image', 'mimes:jpg,jpeg,png,gif,bmp', 'max:2048'],
-            'contact_email'=>['required'],
-            'contact_telephone'=>['required'],
+            'contact_email'=>['required', 'email address'],
+            'contact_telephone'=>['required', 'numeric'],
         ];
     }
 }
