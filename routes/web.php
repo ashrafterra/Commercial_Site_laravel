@@ -19,4 +19,3 @@ Route::resource('/items', 'ItemController');
 Route::resource('/categories', 'CategoryController');
 Route::resource('/cart', 'CartController');
 Route::resource('/myAccount', 'MyAccountController');
-Route::get('/items_list', 'ItemController@items_list');

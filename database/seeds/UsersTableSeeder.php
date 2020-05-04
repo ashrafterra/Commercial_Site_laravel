@@ -12,7 +12,9 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            ['name'=>'ashraf', 'email' => 'ashrafterra@hotmail.com','password' => '$2y$10$QOVpBCx82GITKXSqMmjCYuOHxDbc9jd8zgk2qmP6ODb.qsNIEEFPe'],
+            ['name'=>'Sales', 'email' => 'sales@utc.com','password' => '$2y$10$QOVpBCx82GITKXSqMmjCYuOHxDbc9jd8zgk2qmP6ODb.qsNIEEFPe'],
+
+            ['name'=>'Customer Support', 'email' => 'CS@utc.com','password' => '$2y$10$QOVpBCx82GITKXSqMmjCYuOHxDbc9jd8zgk2qmP6ODb.qsNIEEFPe'],
         ]);
 
     }

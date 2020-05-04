@@ -1,5 +1,23 @@
 window._ = require('lodash');
 
+
+
+
+window.io = require('socket.io-client');
+
+import Echo from 'laravel-echo'
+
+window.Echo = new Echo({
+    broadcaster: 'socket.io',
+    host: window.location.hostname + ":6001"  ,
+	auth: {
+        headers: {
+            'Authorization': 'Bearer ' + '92bf8d90e284956dd9d32798c2852f49',
+        }
+    }
+
+});
+
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
  * for JavaScript based Bootstrap features such as modals and tabs. This
@@ -23,6 +41,7 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
+window.axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
 /**
  * Next we will register the CSRF Token as a common header with Axios so that
  * all outgoing HTTP requests automatically have it attached. This is just

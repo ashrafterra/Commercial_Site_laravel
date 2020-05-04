@@ -51,11 +51,12 @@
         mounted() {
             this.getItems();
             this.getCategories();
+            this.listenForBroadcast();
         },
 
         methods: { 
             getItems() {
-                axios.get('/items_list')
+                axios.get('/api/items_list')
                     .then(response => {
                         this.items = response.data
                     });
@@ -76,7 +77,13 @@
             },
             getItemDetails(item){
                 this.selected_item = '/items/'+item;
-            }
+            },
+
+            listenForBroadcast(){
+                Echo.join(`chat`)
+                .listen('.MessagePushed', (e) => {
+                console.log(e.update);});
+            },
         }
     }
 </script>

@@ -18,4 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
+//get items
+Route::get('/items_list', 'ItemController@items_list');
+
 

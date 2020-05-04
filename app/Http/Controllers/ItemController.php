@@ -8,6 +8,7 @@ use App\Item;
 use App\Category;
 use App\Brand;
 use Illuminate\Support\Facades\Storage;
+use App\Events\MessagePushed;
 
 class ItemController extends Controller
 {
@@ -119,7 +120,10 @@ class ItemController extends Controller
 
     public function items_list()
     {
+        $message='hi';
+        event(new MessagePushed($message));
         $items=Item::with('brand')->get();
         return $items;
     }
+
 }
