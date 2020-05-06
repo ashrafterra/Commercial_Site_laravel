@@ -2013,20 +2013,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -48898,7 +48884,7 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container" }, [
-    _c("div", { staticClass: "row offset-1" }, [
+    _c("div", { staticClass: "row" }, [
       _c("label", { attrs: { for: "category" } }, [
         _vm._v("Filter by Category\n            "),
         _c(
@@ -48960,8 +48946,13 @@ var render = function() {
       "div",
       { staticClass: "row" },
       _vm._l(_vm.items, function(item) {
-        return _c("div", { attrs: { value: item.id } }, [
-          _c("div", { staticClass: "card", staticStyle: { width: "16rem" } }, [
+        return _c(
+          "div",
+          {
+            staticClass: "col-sm-6 col-md-4 col-xl-3 mb-3",
+            attrs: { value: item.id }
+          },
+          [
             _c(
               "a",
               {
@@ -48974,77 +48965,60 @@ var render = function() {
               },
               [
                 _c("img", {
-                  staticClass: "card-img-top",
-                  staticStyle: { height: "10rem", width: "10rem" },
-                  attrs: { src: item.fileName, alt: "..." }
-                })
+                  staticClass: "img-thumbnail mb-3",
+                  attrs: {
+                    src: item.fileName,
+                    alt: "...",
+                    height: "480",
+                    width: "300"
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "h5",
+                  {
+                    staticClass: "mb-1",
+                    staticStyle: { color: "blue", "font-weight": "bold" }
+                  },
+                  [_vm._v(_vm._s(item.name))]
+                )
               ]
             ),
             _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _c(
-                "h5",
-                {
-                  staticClass: "card-title",
-                  staticStyle: { color: "blue", "font-weight": "bold" }
-                },
-                [_vm._v(_vm._s(item.name))]
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c(
-                  "h6",
-                  {
-                    staticClass: "card-text",
-                    staticStyle: { "font-weight": "bold" }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            Brand:  " +
-                        _vm._s(item.brand.brand) +
-                        "\n                        "
-                    )
-                  ]
+            _c(
+              "p",
+              {
+                staticClass: "text-muted",
+                staticStyle: { "font-weight": "bold" }
+              },
+              [_vm._v(" Brand:  " + _vm._s(item.brand.brand))]
+            ),
+            _vm._v(" "),
+            _c("p", { staticClass: "text-muted" }, [
+              _vm._v("Price:" + _vm._s(item.price) + "L.E")
+            ]),
+            _vm._v(" "),
+            _c(
+              "p",
+              {
+                staticClass: "card-text",
+                staticStyle: {
+                  "font-family": "fantasy",
+                  color: "green",
+                  "font-style": "oblique",
+                  "font-weight": "bold"
+                }
+              },
+              [
+                _vm._v(
+                  "\n                            " +
+                    _vm._s(item.availability ? "Available" : "Out of stock") +
+                    "\n            "
                 )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("h6", { staticClass: "card-text" }, [
-                  _vm._v(
-                    "\n                            Price:" +
-                      _vm._s(item.price) +
-                      "L.E\n                        "
-                  )
-                ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "row offset-6" }, [
-                _c(
-                  "p",
-                  {
-                    staticClass: "card-text",
-                    staticStyle: {
-                      "font-family": "fantasy",
-                      color: "green",
-                      size: "10px",
-                      "font-style": "oblique",
-                      "font-weight": "bold"
-                    }
-                  },
-                  [
-                    _vm._v(
-                      "\n                            " +
-                        _vm._s(
-                          item.availability ? "Available" : "Out of stock"
-                        ) +
-                        "\n                        "
-                    )
-                  ]
-                )
-              ])
-            ])
-          ])
-        ])
+              ]
+            )
+          ]
+        )
       }),
       0
     )
@@ -61507,9 +61481,9 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /var/www/Commercial_Site_laravel/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /var/www/Commercial_Site_laravel/resources/sass/app.scss */"./resources/sass/app.scss");
-module.exports = __webpack_require__(/*! /var/www/Commercial_Site_laravel/resources/sass/map.scss */"./resources/sass/map.scss");
+__webpack_require__(/*! /media/ashraf/Windows/WebProjects/Commercial_Site_laravel/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /media/ashraf/Windows/WebProjects/Commercial_Site_laravel/resources/sass/app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! /media/ashraf/Windows/WebProjects/Commercial_Site_laravel/resources/sass/map.scss */"./resources/sass/map.scss");
 
 
 /***/ }),
