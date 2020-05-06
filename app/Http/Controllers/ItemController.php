@@ -120,8 +120,8 @@ class ItemController extends Controller
 
     public function items_list()
     {
-        $message='hi';
-        event(new MessagePushed($message));
+        //$message='hi';
+        //event(new MessagePushed($message));
         $items=Item::with('brand')->get();
         return $items;
     }

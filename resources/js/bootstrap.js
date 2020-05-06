@@ -3,20 +3,20 @@ window._ = require('lodash');
 
 
 
-window.io = require('socket.io-client');
+// window.io = require('socket.io-client');
 
-import Echo from 'laravel-echo'
+// import Echo from 'laravel-echo'
 
-window.Echo = new Echo({
-    broadcaster: 'socket.io',
-    host: window.location.hostname + ":6001"  ,
-	auth: {
-        headers: {
-            'Authorization': 'Bearer ' + '92bf8d90e284956dd9d32798c2852f49',
-        }
-    }
+// window.Echo = new Echo({
+//     broadcaster: 'socket.io',
+//     host: window.location.hostname + ":6001"  ,
+// 	auth: {
+//         headers: {
+//             'Authorization': 'Bearer ' + '92bf8d90e284956dd9d32798c2852f49',
+//         }
+//     }
 
-});
+// });
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

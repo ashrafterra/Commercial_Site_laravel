@@ -22,7 +22,7 @@
 		<div class="row offset-1 mt-3">
 			<!-- Modal to show contact information -->
 			<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#showModal">
-		   	Contact information
+		   	Contact us now!
 			</button>
 		    <div class="modal fade" id="showModal" tabindex="-1" role="dialog" aria-labelledby="showModalLabel" aria-hidden="true">
 		      <div class="modal-dialog" role="document">
