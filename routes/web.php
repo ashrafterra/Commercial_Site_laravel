@@ -16,6 +16,7 @@ Route::get('/', function(){
 	return redirect()->route('items.index');
 });
 Route::resource('/items', 'ItemController');
-Route::resource('/categories', 'CategoryController');
+Route::get('/filters', 'FilterController@filters');
+Route::post('/filters/1', 'FilterController@show');
 Route::resource('/cart', 'CartController');
 Route::resource('/myAccount', 'MyAccountController');

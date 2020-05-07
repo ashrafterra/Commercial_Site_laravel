@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\Item;
+use App\Brand;
 
-class CategoryController extends Controller
+class FilterController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function filters()
     {
         $categories=Category::all();
-        return $categories;
+        $brands=Brand::all();
+        return ['categories'=>$categories, 'brands'=>$brands];
     }
 
     /**
@@ -24,9 +26,9 @@ class CategoryController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function brands()
     {
-        //
+
     }
 
     /**
@@ -46,10 +48,26 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        $category=Category::find($id);
-        $items=Item::with('brand')->where('category',$category->category)->get();
+        $brand_id=0;
+        if(!$request->category){
+            if($request->brand){
+                $brand_id=Brand::where('brand',$request->brand)->first()->id;
+                $items=Item::with('brand')->where('brand_id',$brand_id)->get();
+            }
+            else{$items=Item::with('brand')->get();}
+        }
+        else{
+            if($request->brand){
+                $brand_id=Brand::where('brand',$request->brand)->first()->id;
+                $items=Item::with('brand')->where('brand_id',$brand_id)->where('category',$request->category)->get();
+            }
+            else{
+                $items=Item::with('brand')->where('category',$request->category)->get();
+            }
+        }
+          
         return $items;
     }
 

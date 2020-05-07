@@ -64,7 +64,7 @@
             </ul>
           </div>
         </nav>
-        <main class="bd-content p-5">
+        <main class="bd-content p-4">
             @yield('content')
         </main>
     </div>
