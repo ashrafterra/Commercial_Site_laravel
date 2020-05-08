@@ -1985,6 +1985,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1997,7 +2002,8 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    this.getItems();
+    this.filterItems(); // this.getItems();
+
     this.getFilters(); // this.listenForBroadcast();
   },
   methods: {
@@ -2009,23 +2015,22 @@ __webpack_require__.r(__webpack_exports__);
       this.selected_brand = "";
       this.filterItems();
     },
-    getItems: function getItems() {
+    // getItems() {
+    //     axios.get('/api/items_list')
+    //         .then(response => {
+    //             this.items = response.data
+    //         });
+    // },
+    getFilters: function getFilters() {
       var _this = this;
 
-      axios.get('/api/items_list').then(function (response) {
-        _this.items = response.data;
-      });
-    },
-    getFilters: function getFilters() {
-      var _this2 = this;
-
       axios.get('/filters').then(function (response) {
-        _this2.categories = response.data.categories;
-        _this2.brands = response.data.brands;
+        _this.categories = response.data.categories;
+        _this.brands = response.data.brands;
       });
     },
     filterItems: function filterItems() {
-      var _this3 = this;
+      var _this2 = this;
 
       axios({
         method: 'post',
@@ -2035,7 +2040,7 @@ __webpack_require__.r(__webpack_exports__);
           category: this.selected_category
         }
       }).then(function (response) {
-        _this3.items = response.data;
+        _this2.items = response.data;
       });
     },
     getItemDetails: function getItemDetails(item) {
@@ -37422,9 +37427,19 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("div", { staticClass: "row" }, [
-      _c("div", { staticClass: "col-2 border" }, [
-        _c("div", { staticClass: "row mb-4" }, [
+    _c("section", { staticClass: "jumbotron text-center" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("h1", { staticClass: "jumbotron-heading" }, [
+          _vm._v("Networking Products")
+        ]),
+        _vm._v(" "),
+        _c("p", { staticClass: "lead text-muted" }, [
+          _vm._v(
+            "Choose your prefered netwok products from global brand suppliers "
+          )
+        ]),
+        _vm._v(" "),
+        _c("p", [
           !_vm.selected_category
             ? _c(
                 "select",
@@ -37469,7 +37484,7 @@ var render = function() {
                         hidden: ""
                       }
                     },
-                    [_vm._v("Filter Category")]
+                    [_vm._v("Category")]
                   ),
                   _vm._v(" "),
                   _vm._l(_vm.categories, function(category) {
@@ -37490,6 +37505,7 @@ var render = function() {
           _vm.selected_category
             ? _c("span", [_vm._v(_vm._s(_vm.selected_category))])
             : _vm._e(),
+          _vm._v(" "),
           _vm.selected_category
             ? _c(
                 "button",
@@ -37503,10 +37519,8 @@ var render = function() {
                 },
                 [_vm._v("X")]
               )
-            : _vm._e()
-        ]),
-        _vm._v(" "),
-        _c("div", { staticClass: "row mb-4" }, [
+            : _vm._e(),
+          _vm._v(" "),
           !_vm.selected_brand
             ? _c(
                 "select",
@@ -37572,6 +37586,7 @@ var render = function() {
           _vm.selected_brand
             ? _c("span", [_vm._v(_vm._s(_vm.selected_brand))])
             : _vm._e(),
+          _vm._v(" "),
           _vm.selected_brand
             ? _c(
                 "button",
@@ -37587,50 +37602,38 @@ var render = function() {
               )
             : _vm._e()
         ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "col-9" }, [
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "album py-5 bg-light" }, [
+      _c("div", { staticClass: "container" }, [
         _c(
           "div",
           { staticClass: "row" },
           _vm._l(_vm.items, function(item) {
             return _c(
               "div",
-              { staticClass: "col-sm-3", attrs: { value: item.id } },
+              { staticClass: "col-md-4", attrs: { value: item.id } },
               [
-                _c("div", { staticClass: "card" }, [
-                  _c(
-                    "a",
-                    {
-                      attrs: { href: _vm.selected_item },
-                      on: {
-                        click: function($event) {
-                          return _vm.getItemDetails(item.id)
-                        }
-                      }
+                _c("div", { staticClass: "card mb-4 box-shadow" }, [
+                  _c("img", {
+                    staticClass: "card-img-top",
+                    staticStyle: {
+                      height: "225px",
+                      width: "100%",
+                      display: "block"
                     },
-                    [
-                      _c("img", {
-                        staticClass: "card-img-top",
-                        attrs: {
-                          src: item.fileName,
-                          alt: ".... ",
-                          width: "80",
-                          height: "150"
-                        }
-                      })
-                    ]
-                  ),
+                    attrs: {
+                      src: item.fileName,
+                      alt: "Image",
+                      "data-holder-rendered": "true"
+                    }
+                  }),
                   _vm._v(" "),
                   _c("div", { staticClass: "card-body" }, [
-                    _c(
-                      "h5",
-                      {
-                        staticClass: "card-title",
-                        staticStyle: { color: "blue", "font-weight": "bold" }
-                      },
-                      [_vm._v(_vm._s(item.name))]
-                    ),
+                    _c("h5", { staticClass: "card-title" }, [
+                      _vm._v(_vm._s(item.name))
+                    ]),
                     _vm._v(" "),
                     _c(
                       "p",
@@ -37654,36 +37657,11 @@ var render = function() {
                       },
                       [
                         _vm._v(
-                          "\n\t\t                        " +
+                          "\n\t\t\t\t\t\t\t\t" +
                             _vm._s(
                               item.availability ? "Available" : "Out of stock"
                             ) +
-                            "\n\t\t                    "
-                        )
-                      ]
-                    )
-                  ]),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "card-footer" }, [
-                    _c("div", { staticClass: "row" }, [
-                      _c("small", { staticClass: "text-muted" }, [
-                        _vm._v("Price:" + _vm._s(item.price) + "L.E")
-                      ])
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "button",
-                      {
-                        staticClass: "btn btn-primary",
-                        attrs: {
-                          type: "button",
-                          "data-toggle": "modal",
-                          "data-target": "#showModal"
-                        }
-                      },
-                      [
-                        _vm._v(
-                          "\n\t\t                    Contact us now!\n\t\t                    "
+                            "\n\t\t\t\t\t\t\t"
                         )
                       ]
                     ),
@@ -37691,56 +37669,113 @@ var render = function() {
                     _c(
                       "div",
                       {
-                        staticClass: "modal fade",
-                        attrs: {
-                          id: "showModal",
-                          tabindex: "-1",
-                          role: "dialog",
-                          "aria-labelledby": "showModalLabel",
-                          "aria-hidden": "true"
-                        }
+                        staticClass:
+                          "d-flex justify-content-between align-items-center"
                       },
                       [
-                        _c(
-                          "div",
-                          {
-                            staticClass: "modal-dialog",
-                            attrs: { role: "document" }
-                          },
-                          [
-                            _c("div", { staticClass: "modal-content" }, [
-                              _vm._m(0, true),
-                              _vm._v(" "),
-                              _c("div", { staticClass: "modal-body" }, [
-                                _c("div", { staticClass: "row offset-1" }, [
-                                  _c("div", { staticClass: "col-3" }, [
-                                    _vm._v(" Telephone: ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _vm._v(
-                                      " " + _vm._s(item.contact_telephone) + " "
-                                    )
+                        _c("div", { staticClass: "btn-group" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "btn btn-sm btn-outline-secondary",
+                              attrs: {
+                                type: "button",
+                                href: _vm.selected_item
+                              },
+                              on: {
+                                click: function($event) {
+                                  return _vm.getItemDetails(item.id)
+                                }
+                              }
+                            },
+                            [_vm._v("Details")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "btn btn-sm btn-outline-secondary",
+                              attrs: {
+                                type: "button",
+                                "data-toggle": "modal",
+                                "data-target": "#showModal"
+                              }
+                            },
+                            [_vm._v("Contact")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "div",
+                            {
+                              staticClass: "modal fade",
+                              attrs: {
+                                id: "showModal",
+                                tabindex: "-1",
+                                role: "dialog",
+                                "aria-labelledby": "showModalLabel",
+                                "aria-hidden": "true"
+                              }
+                            },
+                            [
+                              _c(
+                                "div",
+                                {
+                                  staticClass: "modal-dialog",
+                                  attrs: { role: "document" }
+                                },
+                                [
+                                  _c("div", { staticClass: "modal-content" }, [
+                                    _vm._m(0, true),
+                                    _vm._v(" "),
+                                    _c("div", { staticClass: "modal-body" }, [
+                                      _c(
+                                        "div",
+                                        { staticClass: "row offset-1" },
+                                        [
+                                          _c("div", { staticClass: "col-3" }, [
+                                            _vm._v(" Telephone: ")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "col-8" }, [
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(item.contact_telephone) +
+                                                " "
+                                            )
+                                          ])
+                                        ]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "row offset-1" },
+                                        [
+                                          _c("div", { staticClass: "col-3" }, [
+                                            _vm._v(" Email: ")
+                                          ]),
+                                          _vm._v(" "),
+                                          _c("div", { staticClass: "col-8" }, [
+                                            _vm._v(
+                                              " " +
+                                                _vm._s(item.contact_email) +
+                                                " "
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    ]),
+                                    _vm._v(" "),
+                                    _vm._m(1, true)
                                   ])
-                                ]),
-                                _vm._v(" "),
-                                _c("div", { staticClass: "row offset-1" }, [
-                                  _c("div", { staticClass: "col-3" }, [
-                                    _vm._v(" Email: ")
-                                  ]),
-                                  _vm._v(" "),
-                                  _c("div", { staticClass: "col-8" }, [
-                                    _vm._v(
-                                      " " + _vm._s(item.contact_email) + " "
-                                    )
-                                  ])
-                                ])
-                              ]),
-                              _vm._v(" "),
-                              _vm._m(1, true)
-                            ])
-                          ]
-                        )
+                                ]
+                              )
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("small", { staticClass: "text-muted" }, [
+                          _vm._v("Price:" + _vm._s(item.price) + "L.E")
+                        ])
                       ]
                     )
                   ])

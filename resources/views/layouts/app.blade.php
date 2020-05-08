@@ -24,52 +24,61 @@
 <body>
 
     <!-- Facebook div -->
-    <div id="fb-root"></div>
+    <!-- <div id="fb-root"></div> -->
     <div id="app">
-        <nav class="navbar navbar-expand-lg navbar-light bg-light">
-          <a class="navbar-brand" href="/" style=" font-weight:bolder; ">
-            <img src="/storage/logos/logo.bmp" width="45" height="36">Universal
-          </a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-            @guest
-            <!-- Right Side Of Navbar -->
-                <!-- Authentication Links -->
-                <li class="nav-item">
-                    <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                </li>
-            @else
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-md-right" aria-labelledby="navbarDropdownMenuLink">
-                        <a class="dropdown-item" href="/items/create"> Add New Item<span class="sr-only">(current)</span></a>
-                        <a class="dropdown-item" href="/myAccount">Manage your items</a>
-                        <a class="dropdown-item" href="{{ route('logout') }}"
+    	<header>
+	      <div class="bg-dark collapse" id="navbarHeader" style="">
+	        <div class="container">
+	          <div class="row">
+	            <div class="col-sm-8 col-md-7 py-4">
+	              <h4 class="text-white">About</h4>
+	              <p class="text-muted">Universal provides a broad range of quality Networking products such as Fiber and copper Cables.</p>
+	            </div>
+	            <div class="col-sm-4 offset-md-1 py-4">
+	              
+                @guest
+                <h4 class="text-white"><a class="text-white" href="{{ route('login') }}">{{ __('Login') }}</a></h4>
+                @else
+                <h4 class="text-white">{{ Auth::user()->name }}</h4>
+                @endguest
+	              <ul class="list-unstyled">
+					@guest
+					@else
+            			<li><a class="text-white" href="/items/create">Add New Item</a></li>
+            			<li><a class="text-white" href="/myAccount">Manage your items</a></li>
+            			<li><a class="text-white" href="{{ route('logout') }}"
                                onclick="event.preventDefault();
                                              document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
                         </a>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                         @csrf
-                        </form>
-                    </div>
-                </li>
-            @endguest
-            </ul>
-          </div>
-        </nav>
-        <main class="bd-content p-4">
+                        </form></li>
+					@endguest
+	              </ul>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	      <div class="navbar navbar-dark bg-dark box-shadow">
+	        <div class="container d-flex justify-content-between">
+	        	<a class="navbar-brand d-flex align-items-center" href="/" style=" font-weight:bolder; ">
+            		<img src="/storage/logos/logo.bmp" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="mr-2"><circle cx="12" cy="13" r="4"></circle>
+	            <strong>Universal</strong>
+	          </a>
+	          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="true" aria-label="Toggle navigation">
+	            <span class="navbar-toggler-icon"></span>
+	          </button>
+	        </div>
+	      </div>
+	    </header>
+
+        <main role="main">
             @yield('content')
         </main>
     </div>
     
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId={{config('services.facebook.key')}}&autoLogAppEvents=1">
-    </script>
+    <!-- <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.3&appId={{config('services.facebook.key')}}&autoLogAppEvents=1">
+    </script> -->
 </body>
 </html>

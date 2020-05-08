@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="row">
+<div class="row album py-5 bg-light">
 	<div class="col-4">
 		<div class="row offset-1">
 			<div class="col-4"> Item Name: </div>
@@ -56,5 +56,5 @@
 		<img src="{{$item->fileName}}" class="card-img-top" alt="" style="width: 30rem;height:25rem;" >    
 	</div>
 </div>
-<div class="fb-comments" data-href="{{config('app.url')}}/items/{{$item->id}}" data-width="800" data-numposts="10"></div>
+<!-- <div class="fb-comments" data-href="{{config('app.url')}}/items/{{$item->id}}" data-width="800" data-numposts="10"></div> -->
 @endsection
