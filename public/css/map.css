@@ -1,8 +1,1 @@
-#map {
-  height: 500px;
-}
-
-#mymap {
-  height: 500px;
-}
-
+#map,#mymap{height:500px}
